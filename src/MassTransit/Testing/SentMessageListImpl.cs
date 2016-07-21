@@ -17,6 +17,7 @@ namespace MassTransit.Testing
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using System.Threading;
 
 
@@ -76,7 +77,11 @@ namespace MassTransit.Testing
 
             while (any == false)
             {
-                if (_received.WaitOne(_timeout, true) == false)
+#if NETCORE
+                if(!_received.WaitOne(_timeout))
+#else                
+                if (!_received.WaitOne(_timeout, true))
+#endif
                     return false;
 
                 lock (_messages)

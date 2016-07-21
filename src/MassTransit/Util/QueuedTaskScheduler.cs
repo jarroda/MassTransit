@@ -109,7 +109,11 @@ namespace MassTransit.Util
         /// <summary>Initializes the scheduler.</summary>
         /// <param name="threadCount">The number of threads to create and use for processing work items.</param>
         public QueuedTaskScheduler(int threadCount)
+#if NETCORE
+            : this(threadCount, string.Empty, false, 0, null, null)
+#else
             : this(threadCount, string.Empty, false, ThreadPriority.Normal, ApartmentState.MTA, 0, null, null)
+#endif
         {
         }
 
@@ -126,8 +130,10 @@ namespace MassTransit.Util
             int threadCount,
             string threadName = "",
             bool useForegroundThreads = false,
+#if !NETCORE
             ThreadPriority threadPriority = ThreadPriority.Normal,
             ApartmentState threadApartmentState = ApartmentState.MTA,
+#endif
             int threadMaxStackSize = 0,
             Action threadInit = null,
             Action threadFinally = null)
@@ -146,14 +152,21 @@ namespace MassTransit.Util
             _threads = new Thread[threadCount];
             for (int i = 0; i < threadCount; i++)
             {
+#if NETCORE
+                _threads[i] = new Thread(() => ThreadBasedDispatchLoop(threadInit, threadFinally))
+                {
+                    IsBackground = !useForegroundThreads,
+                };
+#else
                 _threads[i] = new Thread(() => ThreadBasedDispatchLoop(threadInit, threadFinally), threadMaxStackSize)
                 {
                     Priority = threadPriority,
                     IsBackground = !useForegroundThreads,
                 };
+                _threads[i].SetApartmentState(threadApartmentState);
+#endif
                 if (threadName != null)
                     _threads[i].Name = threadName + " (" + i + ")";
-                _threads[i].SetApartmentState(threadApartmentState);
             }
 
             // Start all of the threads
@@ -214,8 +227,10 @@ namespace MassTransit.Util
                     // If a thread abort occurs, we'll try to reset it and continue running.
                     while (true)
                     {
+#if !NETCORE
                         try
                         {
+#endif
                             // For each task queued to the scheduler, try to execute it.
                             foreach (Task task in _blockingTaskQueue.GetConsumingEnumerable(_disposeCancellation.Token))
                             {
@@ -239,6 +254,7 @@ namespace MassTransit.Util
                                         queueForTargetTask.ExecuteTask(targetTask);
                                 }
                             }
+#if !NETCORE
                         }
                         catch (ThreadAbortException)
                         {
@@ -248,6 +264,7 @@ namespace MassTransit.Util
                             if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
                                 Thread.ResetAbort();
                         }
+#endif
                     }
                 }
                 catch (OperationCanceledException)

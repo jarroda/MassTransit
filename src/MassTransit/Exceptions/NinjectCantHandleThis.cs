@@ -15,7 +15,9 @@ namespace MassTransit.Exceptions
     using System;
     using System.Runtime.Serialization;
 
+#if !NETCORE
     [Serializable]
+#endif
     public class NinjectCantHandleThis : 
         MassTransitException
     {
@@ -34,9 +36,11 @@ namespace MassTransit.Exceptions
         {
         }
 
+#if !NETCORE
         protected NinjectCantHandleThis(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

@@ -30,17 +30,21 @@ namespace MassTransit.Transports
             _name = name;
         }
 
+#if !NETCORE
         protected MessageName(SerializationInfo info, StreamingContext context)
         {
             _name = info.GetString("Name");
         }
+#endif
 
         public string Name => _name;
 
+#if !NETCORE
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Name", _name);
         }
+#endif
 
         public override string ToString()
         {

@@ -16,8 +16,9 @@ namespace MassTransit
     using System.Runtime.Serialization;
     using Configurators;
 
-
+#if !NETCORE
     [Serializable]
+#endif
 	public class ConfigurationException :
 		MassTransitException
 	{
@@ -47,10 +48,12 @@ namespace MassTransit
 		{
 		}
 
+#if !NETCORE
 		protected ConfigurationException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}
+#endif
 
 		public ConfigurationResult Result { get; protected set; }
 	}

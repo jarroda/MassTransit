@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class MessageRetryLimitExceededException :
         TransportException
     {
@@ -24,10 +25,12 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected MessageRetryLimitExceededException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
 
         public MessageRetryLimitExceededException(Uri uri)
             : base(uri)

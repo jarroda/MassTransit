@@ -73,16 +73,18 @@ namespace MassTransit.Serialization
 
         ICryptoTransform CreateDecryptor(byte[] key, byte[] iv)
         {
-            using (var provider = new AesCryptoServiceProvider {Padding = _paddingMode})
+            using (var provider = Aes.Create())
             {
+                provider.Padding = _paddingMode;
                 return provider.CreateDecryptor(key, iv);
             }
         }
 
         public ICryptoTransform CreateEncryptor(byte[] key, byte[] iv)
         {
-            using (var provider = new AesCryptoServiceProvider {Padding = _paddingMode})
+            using (var provider = Aes.Create())
             {
+                provider.Padding = _paddingMode;
                 return provider.CreateEncryptor(key, iv);
             }
         }

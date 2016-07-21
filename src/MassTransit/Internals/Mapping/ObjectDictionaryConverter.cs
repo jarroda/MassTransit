@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using Extensions;
     using Reflection;
     using Util;
-
 
     public class ObjectDictionaryConverter<T> :
         IDictionaryConverter
@@ -47,13 +47,13 @@
                 return (IDictionaryMapper<T>)Activator.CreateInstance(converterType, property);
             }
 
-            if (valueType.IsEnum)
+            if (valueType.GetTypeInfo().IsEnum)
                 return new EnumDictionaryMapper<T>(property);
 
             if (valueType.IsArray)
             {
                 Type elementType = valueType.GetElementType();
-                if (elementType.IsValueType || elementType == typeof(string))
+                if (elementType.GetTypeInfo().IsValueType || elementType == typeof(string))
                     return new ValueDictionaryMapper<T>(property);
 
                 IDictionaryConverter elementConverter = _cache.GetConverter(elementType);
@@ -62,7 +62,7 @@
                 return (IDictionaryMapper<T>)Activator.CreateInstance(converterType, property, elementConverter);
             }
 
-            if (valueType.IsValueType || valueType == typeof(string))
+            if (valueType.GetTypeInfo().IsValueType || valueType == typeof(string))
                 return new ValueDictionaryMapper<T>(property);
 
             if (valueType.HasInterface(typeof(IEnumerable<>)))
@@ -73,10 +73,10 @@
                 {
                     Type[] arguments = valueType.GetClosingArguments(typeof(IDictionary<,>)).ToArray();
                     Type keyType = arguments[0];
-                    if (keyType.IsValueType || keyType == typeof(string))
+                    if (keyType.GetTypeInfo().IsValueType || keyType == typeof(string))
                     {
                         elementType = arguments[1];
-                        if (elementType.IsValueType || elementType == typeof(string))
+                        if (elementType.GetTypeInfo().IsValueType || elementType == typeof(string))
                         {
                             Type converterType =
                                 typeof(ValueValueDictionaryDictionaryMapper<,,>).MakeGenericType(typeof(T),

@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
 	public class SendException :
 		AbstractUriException
 	{
@@ -42,10 +43,12 @@ namespace MassTransit
 			MessageType = messageType;
 		}
 
+#if !NETCORE
 		protected SendException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}
+#endif
 
 		public Type MessageType { get; protected set; }
 	}

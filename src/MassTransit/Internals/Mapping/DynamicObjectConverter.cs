@@ -15,10 +15,10 @@ namespace MassTransit.Internals.Mapping
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using Extensions;
     using Reflection;
     using Util;
-
 
     public class DynamicObjectConverter<T, TImplementation> :
         IObjectConverter
@@ -58,13 +58,13 @@ namespace MassTransit.Internals.Mapping
                 return (IObjectMapper<TImplementation>)Activator.CreateInstance(converterType, property);
             }
 
-            if (valueType.IsEnum)
+            if (valueType.GetTypeInfo().IsEnum)
                 return new EnumObjectMapper<TImplementation>(property);
 
             if (valueType.IsArray)
             {
                 Type elementType = valueType.GetElementType();
-                if (elementType.IsValueType || elementType == typeof(string))
+                if (elementType.GetTypeInfo().IsValueType || elementType == typeof(string))
                 {
                     Type valueConverterType = typeof(ValueArrayObjectMapper<,>).MakeGenericType(
                         typeof(TImplementation), elementType);
@@ -79,7 +79,7 @@ namespace MassTransit.Internals.Mapping
                     (IObjectMapper<TImplementation>)Activator.CreateInstance(converterType, property, elementConverter);
             }
 
-            if (valueType.IsValueType || valueType == typeof(string))
+            if (valueType.GetTypeInfo().IsValueType || valueType == typeof(string))
                 return new ValueObjectMapper<TImplementation>(property);
 
             if (valueType.ClosesType(typeof(IEnumerable<>)))
@@ -92,9 +92,9 @@ namespace MassTransit.Internals.Mapping
                     Type elementType = genericArguments[1];
 
 
-                    if (keyType.IsValueType || keyType == typeof(string))
+                    if (keyType.GetTypeInfo().IsValueType || keyType == typeof(string))
                     {
-                        if (elementType.IsValueType || elementType == typeof(string))
+                        if (elementType.GetTypeInfo().IsValueType || elementType == typeof(string))
                         {
                             Type valueConverterType =
                                 typeof(ValueValueDictionaryObjectMapper<,,>).MakeGenericType(typeof(TImplementation),
@@ -123,7 +123,7 @@ namespace MassTransit.Internals.Mapping
                     Type[] genericArguments = valueType.GetClosingArguments(typeof(IEnumerable<>)).ToArray();
                     Type elementType = genericArguments[0];
 
-                    if (elementType.IsValueType || elementType == typeof(string))
+                    if (elementType.GetTypeInfo().IsValueType || elementType == typeof(string))
                     {
                         Type valueConverterType =
                             typeof(ValueListObjectMapper<,>).MakeGenericType(typeof(TImplementation),

@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class NotImplementedByDesignException : 
         MassTransitException
     {
@@ -35,9 +36,11 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected NotImplementedByDesignException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

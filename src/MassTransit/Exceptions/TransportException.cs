@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class TransportException :
         AbstractUriException
     {
@@ -39,9 +40,11 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected TransportException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

@@ -1,0 +1,56 @@
+﻿{
+  "dependencies": {
+    "System.Data.Common": "4.1.0",
+    "NewId": "1.0.0-fork",
+    "Newtonsoft.Json": "9.0.1"
+  },
+  "frameworks": {
+    
+     "netstandard1.5": {
+       "dependencies": {
+         "NETStandard.Library": "1.6.0",
+         "System.Collections.Specialized": "4.0.1",
+         "System.Xml.ReaderWriter": "4.0.11",
+         "System.Runtime": "4.1.0",
+         "System.Threading.Thread": "4.0.0",
+         "System.Threading.Tasks.Parallel": "4.0.1",
+         "System.Runtime.Serialization.Primitives": "4.1.1",
+         "System.Reflection.Emit": "4.0.1",
+         "System.ComponentModel": "4.0.1",
+         "System.ComponentModel.TypeConverter": "4.1.0",
+         "System.Diagnostics.FileVersionInfo": "4.0.0",         
+         "System.Diagnostics.TraceSource": "4.0.0",
+         "System.Diagnostics.Process": "4.1.0",
+         "System.Reflection.Extensions": "4.0.1",
+         "System.Reflection.TypeExtensions": "4.1.0",
+         "Microsoft.Extensions.Caching.Memory": "1.0.0"
+       }, 
+       "buildOptions": {
+         "define": [ "NETCORE" ],
+         "compile": {
+           "exclude": [
+             "TransactionContext.cs",
+             "TransactionContextExtensions.cs",
+             "PerformanceCounterExtensions.cs",
+             "Transports/HttpEndpoint.cs",             
+             "Context/SystemTransactionContext.cs",
+             "Configuration/ITransactionConfigurator.cs",
+             "Configuration/TransactionConfiguratorExtensions.cs",
+             "Configuration/BusConfigurators/PerformanceCounterBusFactorySpecification.cs",
+             "Configuration/PipeConfigurators/TransactionPipeSpecification.cs"
+             
+           ]
+         }
+       }
+     }
+  },
+  "buildOptions": {
+    "allowUnsafe": true,
+    "debugType": "portable",    
+    "compile": {
+      "excludeFiles": [
+        "Transports/HttpEndpoint.cs"
+      ]
+    }
+  }
+}

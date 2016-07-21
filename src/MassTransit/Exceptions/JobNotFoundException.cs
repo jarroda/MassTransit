@@ -14,8 +14,9 @@ namespace MassTransit
 {
     using System;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class JobNotFoundException :
         MassTransitException
     {

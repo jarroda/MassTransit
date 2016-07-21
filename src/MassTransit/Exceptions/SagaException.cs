@@ -16,8 +16,9 @@ namespace MassTransit
     using System.Linq.Expressions;
     using Util;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class SagaException :
         MassTransitException
     {

@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public abstract class AbstractUriException :
         MassTransitException
     {
@@ -41,10 +42,12 @@ namespace MassTransit
             Uri = uri;
         }
 
+#if !NETCORE
         protected AbstractUriException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
 
         public Uri Uri { get; protected set; }
     }

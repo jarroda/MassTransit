@@ -15,8 +15,9 @@ namespace MassTransit.MongoDbIntegration
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class MongoDbConcurrencyException :
         MassTransitException
     {
@@ -34,9 +35,11 @@ namespace MassTransit.MongoDbIntegration
         {
         }
 
+#if !NETCORE
         public MongoDbConcurrencyException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

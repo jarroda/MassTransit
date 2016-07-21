@@ -14,6 +14,7 @@ namespace MassTransit.Transports
 {
     using System;
     using System.Collections.Concurrent;
+    using System.Reflection;
     using System.Text;
 
 
@@ -44,7 +45,7 @@ namespace MassTransit.Transports
 
         string CreateMessageName(Type type)
         {
-            if (type.IsGenericTypeDefinition)
+            if (type.GetTypeInfo().IsGenericTypeDefinition)
                 throw new ArgumentException("An open generic type cannot be used as a message name");
 
             var sb = new StringBuilder("");
@@ -73,7 +74,7 @@ namespace MassTransit.Transports
                 sb.Append(_nestedTypeSeparator);
             }
 
-            if (type.IsGenericType)
+            if (type.GetTypeInfo().IsGenericType)
             {
                 string name = type.GetGenericTypeDefinition().Name;
 

@@ -16,7 +16,6 @@ namespace MassTransit.Util
     using System.Diagnostics;
     using System.Reflection;
 
-
     [Serializable]
     public class BusHostInfo :
         HostInfo
@@ -27,19 +26,24 @@ namespace MassTransit.Util
 
         public BusHostInfo(bool initialize)
         {
-            MachineName = Environment.MachineName;
-
-            MassTransitVersion = GetAssemblyFileVersion(typeof(IBus).Assembly);
+#if NETCORE
+            FrameworkVersion = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+            OperatingSystemVersion = System.Runtime.InteropServices.RuntimeInformation.OSDescription;            
+            var entryAssembly = System.Reflection.Assembly.GetEntryAssembly();
+#else
             FrameworkVersion = Environment.Version.ToString();
             OperatingSystemVersion = Environment.OSVersion.ToString();
+            var entryAssembly = System.Reflection.Assembly.GetEntryAssembly() ?? System.Reflection.Assembly.GetCallingAssembly();
+#endif
             var currentProcess = Process.GetCurrentProcess();
+            MachineName = Environment.MachineName;
+            MassTransitVersion = FileVersionInfo.GetVersionInfo(typeof(IBus).GetTypeInfo().Assembly.Location).FileVersion;
             ProcessId = currentProcess.Id;
             ProcessName = currentProcess.ProcessName;
-
-            var entryAssembly = System.Reflection.Assembly.GetEntryAssembly() ?? System.Reflection.Assembly.GetCallingAssembly();
+            
             var assemblyName = entryAssembly.GetName();
             Assembly = assemblyName.Name;
-            AssemblyVersion = GetAssemblyFileVersion(entryAssembly);
+            AssemblyVersion = FileVersionInfo.GetVersionInfo(entryAssembly.Location).FileVersion;
         }
 
         public string MachineName { get; private set; }
@@ -50,20 +54,5 @@ namespace MassTransit.Util
         public string FrameworkVersion { get; private set; }
         public string MassTransitVersion { get; private set; }
         public string OperatingSystemVersion { get; private set; }
-
-        static string GetAssemblyFileVersion(Assembly assembly)
-        {
-            var attribute = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>();
-            if (attribute != null)
-            {
-                return attribute.Version;
-            }
-
-            var assemblyLocation = assembly.Location;
-            if (assemblyLocation != null)
-                return FileVersionInfo.GetVersionInfo(assemblyLocation).FileVersion;
-
-            return "Unknown";
-        }
     }
 }

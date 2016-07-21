@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class RequestTimeoutException :
         MassTransitException
     {
@@ -34,10 +35,12 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected RequestTimeoutException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
 
         static string FormatMessage(string requestId)
         {

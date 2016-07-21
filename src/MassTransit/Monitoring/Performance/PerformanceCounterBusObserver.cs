@@ -1,3 +1,4 @@
+#if !NETCORE
 namespace MassTransit.Monitoring.Performance
 {
     using System;
@@ -53,3 +54,4 @@ namespace MassTransit.Monitoring.Performance
         }
     }
 }
+#endif

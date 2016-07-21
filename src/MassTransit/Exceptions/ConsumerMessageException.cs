@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class ConsumerMessageException :
         ConsumerException
     {
@@ -30,18 +31,21 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected ConsumerMessageException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
 
         public ConsumerMessageException()
         {
         }
     }
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class ConsumerException :
         MassTransitException
     {
@@ -59,9 +63,11 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected ConsumerException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

@@ -14,6 +14,7 @@ namespace MassTransit.Saga
 {
     using System;
     using System.Linq.Expressions;
+    using System.Reflection;
     using Internals.Reflection;
     using Util;
 

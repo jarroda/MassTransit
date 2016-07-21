@@ -15,6 +15,7 @@ namespace MassTransit.Serialization.JsonConverters
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Reflection;
     using Internals.Extensions;
     using Newtonsoft.Json;
 
@@ -53,7 +54,7 @@ namespace MassTransit.Serialization.JsonConverters
                 return objectType.HasInterface<IEnumerable>();
             }
 
-            if (objectType.IsGenericType)
+            if (objectType.GetTypeInfo().IsGenericType)
             {
                 Type definition = objectType.GetGenericTypeDefinition();
                 if ((definition == typeof(IList<>) || definition == typeof(List<>) || definition == typeof(IEnumerable<>)))

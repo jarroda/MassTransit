@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class JobAlreadyExistsException :
         MassTransitException
     {
@@ -29,9 +30,11 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected JobAlreadyExistsException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

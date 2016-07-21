@@ -15,7 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
+#if !NETCORE
     [Serializable]
+#endif
     public class EndpointNotFoundException :
         MassTransitException
     {
@@ -33,14 +35,17 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected EndpointNotFoundException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class EndpointException :
         AbstractUriException
     {
@@ -63,9 +68,11 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected EndpointException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

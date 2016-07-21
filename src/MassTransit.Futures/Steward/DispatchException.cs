@@ -15,8 +15,9 @@ namespace MassTransit.Steward
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class DispatchException :
         MassTransitException
     {
@@ -34,9 +35,11 @@ namespace MassTransit.Steward
         {
         }
 
-        protected DispatchException(SerializationInfo info, StreamingContext context)
+#if !NETCORE
+		protected DispatchException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

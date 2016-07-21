@@ -15,6 +15,7 @@ namespace MassTransit
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using System.Runtime.Serialization;
     using System.Text;
 
@@ -36,10 +37,12 @@ namespace MassTransit
 		{
 		}
 
+#if !NETCORE
 		protected MessageUrn(SerializationInfo serializationInfo, StreamingContext streamingContext)
 			: base(serializationInfo, streamingContext)
 		{
 		}
+#endif
 
 		public Type GetType(bool throwOnError = true, bool ignoreCase = true)
 		{
@@ -111,7 +114,7 @@ namespace MassTransit
 				sb.Append('+');
 			}
 
-			if (type.IsGenericType)
+			if (type.GetTypeInfo().IsGenericType)
 			{
 			    var name = type.GetGenericTypeDefinition().Name;
 

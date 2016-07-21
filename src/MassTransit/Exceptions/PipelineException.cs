@@ -15,8 +15,9 @@ namespace MassTransit
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class PipelineException :
         MassTransitException
     {
@@ -35,10 +36,12 @@ namespace MassTransit
         {
         }
 
+#if !NETCORE
         protected PipelineException(SerializationInfo info, StreamingContext context)
             :
                 base(info, context)
         {
         }
+#endif
     }
 }

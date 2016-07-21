@@ -13,6 +13,7 @@
 namespace MassTransit.Context
 {
     using System;
+    using System.Reflection;
     using System.Threading;
     using Internals.Extensions;
 

@@ -18,8 +18,9 @@ namespace MassTransit
     using System.Runtime.Serialization;
     using Internals.Extensions;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class PublishException :
         MassTransitException
     {
@@ -33,11 +34,12 @@ namespace MassTransit
             MessageType = messageType;
         }
 
+#if !NETCORE
         protected PublishException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-
+#endif
         public Type MessageType { get; protected set; }
 
         static string CreateMessage(Type messageType, IEnumerable<Exception> exceptions)
