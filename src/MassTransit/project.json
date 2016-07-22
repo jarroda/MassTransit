@@ -39,8 +39,31 @@
              "Configuration/ITransactionConfigurator.cs",
              "Configuration/TransactionConfiguratorExtensions.cs",
              "Configuration/BusConfigurators/PerformanceCounterBusFactorySpecification.cs",
-             "Configuration/PipeConfigurators/TransactionPipeSpecification.cs"
-             
+             "Configuration/PipeConfigurators/TransactionPipeSpecification.cs",
+             "Serialization/StaticHeaders.cs",
+             "Serialization/StaticConsumeContext.cs",
+             "Serialization/ExtensionsForBinaryMessageSerializer.cs",
+             "Serialization/BinaryMessageSerializer.cs",
+             "Serialization/BinaryMessageDeserializer.cs",
+             "Pipeline/Filters/TransactionFilter.cs",
+             "Monitoring/Performance/BusPerformanceCounters.cs",
+             "Monitoring/Performance/ConsumerPerformanceCounter.cs",
+             "Monitoring/Performance/ConsumerPerformanceCounterCache.cs",
+             "Monitoring/Performance/ConsumerPerformanceCounters.cs",
+             "Monitoring/Performance/IConsumerPerformanceCounter.cs",
+             "Monitoring/Performance/IMessagePerformanceCounter.cs",
+             "Monitoring/Performance/InstancePerformanceCounter.cs",
+             "Monitoring/Performance/IPerformanceCounter.cs",
+             "Monitoring/Performance/ISendPerformanceCounter.cs",
+             "Monitoring/Performance/MessagePerformanceCounter.cs",
+             "Monitoring/Performance/MessagePerformanceCounterCache.cs",
+             "Monitoring/Performance/MessagePerformanceCounters.cs",
+             "Monitoring/Performance/NullPerformanceCounter.cs",
+             "Monitoring/Performance/PerformanceCounterBusObserver.cs",
+             "Monitoring/Performance/PerformanceCounterPublishObserver.cs",
+             "Monitoring/Performance/PerformanceCounterReceiveObserver.cs",
+             "Monitoring/Performance/PerformanceCounters.cs",
+             "Monitoring/Performance/PerformanceCounterSendObserver.cs"
            ]
          }
        }
