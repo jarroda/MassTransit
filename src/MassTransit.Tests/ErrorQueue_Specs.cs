@@ -21,7 +21,6 @@ namespace MassTransit.Tests
     using TestFramework;
     using TestFramework.Messages;
 
-
     [TestFixture]
     public class A_serialization_exception :
         InMemoryTestFixture

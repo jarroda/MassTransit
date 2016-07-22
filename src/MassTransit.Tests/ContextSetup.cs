@@ -15,11 +15,11 @@ namespace MassTransit.Tests
     using System;
     using System.Diagnostics;
     using System.IO;
-    using Log4NetIntegration.Logging;
+    //using Log4NetIntegration.Logging;
     using Logging;
     using NUnit.Framework;
-    using log4net;
-    using log4net.Config;
+    //using log4net;
+    //using log4net.Config;
 
     [SetUpFixture]
     public class ContextSetup
@@ -31,17 +31,17 @@ namespace MassTransit.Tests
 
             string file = Path.Combine(path, "masstransit.tests.log4net.xml");
 
-            XmlConfigurator.Configure(new FileInfo(file));
+            //XmlConfigurator.Configure(new FileInfo(file));
 
             Trace.WriteLine("Loading Log4net: " + file);
 
-            Logger.UseLogger(new Log4NetLogger());
+            //Logger.UseLogger(new Log4NetLogger());
         }
 
         [OneTimeTearDown]
         public void After_all()
         {
-            LogManager.Shutdown();
+            //LogManager.Shutdown();
         }
     }
 }

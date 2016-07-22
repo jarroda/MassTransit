@@ -37,10 +37,11 @@ namespace MassTransit.TestFramework
             : base(message, innerException)
         {
         }
-
+#if !NETCORE
         protected IntentionalTestException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

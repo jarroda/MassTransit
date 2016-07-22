@@ -1,0 +1,26 @@
+﻿{
+  "dependencies": {
+    "MassTransit.TestFramework": { "target": "project" },
+    "NewId": "1.0.0-fork",
+    "NUnit": "3.4.1",
+    "dotnet-test-nunit": "3.4.0-beta-1",
+    "Shouldly": "2.8.0"
+  },
+  "testRunner": "nunit",
+  "frameworks": {
+    "net452": { }
+  },
+  "buildOptions": {
+    "allowUnsafe": true,
+    "debugType": "portable",
+    "compile": {
+      "exclude": [
+        "Saga/SagaTestContext.cs",
+        "NewConfigurationModel.cs"
+      ]
+    },
+    "copyToOutput": [
+      "dotnet-test-nunit"
+    ]
+  }
+}
