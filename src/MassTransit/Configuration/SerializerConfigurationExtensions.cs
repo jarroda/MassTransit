@@ -77,6 +77,7 @@ namespace MassTransit
                 new SetMessageSerializerBusFactorySpecification<XmlMessageSerializer>());
         }
 
+#if !NETCORE
         /// <summary>
         /// Serialize message using the .NET binary formatter (also adds support for the binary deserializer)
         /// </summary>
@@ -100,5 +101,6 @@ namespace MassTransit
             configurator.AddBusFactorySpecification(new SupportMessageDeserializerBusFactorySpecification(
                 BinaryMessageSerializer.BinaryContentType, (s, p) => new BinaryMessageDeserializer(JsonMessageSerializer.Serializer, s, p)));
         }
+#endif
     }
 }

@@ -75,7 +75,13 @@ namespace MassTransit.Util
         /// </summary> 
         private void NotifyThreadPoolOfPendingWork()
         {
+#if NETCORE
+            // .NET Core does not support restricted security environments (CAS)
+            // and therefore doesn't provide UnSafeQueueUserWorkItem (isn't needed)
+            ThreadPool.QueueUserWorkItem(_ =>
+#else
             ThreadPool.UnsafeQueueUserWorkItem(_ =>
+#endif
             {
                 // Note that the current thread is now processing work items. 
                 // This is necessary to enable inlining of tasks into this thread. 

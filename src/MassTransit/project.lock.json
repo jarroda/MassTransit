@@ -1481,7 +1481,7 @@
           "System.Runtime.Handles": "4.0.1"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Threading.ThreadPool.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Threading.ThreadPool.dll": {}
@@ -5603,6 +5603,7 @@
       "System.Runtime.Serialization.Primitives >= 4.1.1",
       "System.Threading.Tasks.Parallel >= 4.0.1",
       "System.Threading.Thread >= 4.0.0",
+      "System.Threading.ThreadPool >= 4.0.10",
       "System.Xml.ReaderWriter >= 4.0.11"
     ]
   },

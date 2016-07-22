@@ -13,6 +13,7 @@
 namespace MassTransit
 {
     using System;
+    using System.Reflection;
 
 
     /// <summary>
@@ -31,7 +32,7 @@ namespace MassTransit
         public static string ToMessageName(this Type messageType)
         {
             string messageName;
-            if (messageType.IsGenericType)
+            if (messageType.GetTypeInfo().IsGenericType)
             {
                 messageName = messageType.GetGenericTypeDefinition().FullName;
                 messageName += "[";
@@ -46,7 +47,7 @@ namespace MassTransit
             else
                 messageName = messageType.FullName;
 
-            string assembly = messageType.Assembly.FullName;
+            string assembly = messageType.GetTypeInfo().Assembly.FullName;
             assembly = ", " + assembly.Substring(0, assembly.IndexOf(','));
 
             return $"{messageName}{assembly}";

@@ -16,7 +16,6 @@ namespace MassTransit.Courier
     using System.Linq.Expressions;
     using System.Security.Cryptography;
 
-
     public interface Argument
     {
         /// <summary>
@@ -59,7 +58,7 @@ namespace MassTransit.Courier
     {
         public void Encrypted(byte[] key, byte[] iv)
         {
-            using (var x = new AesCryptoServiceProvider())
+            using (var x = Aes.Create())
             {
                 x.Key = key;
                 x.IV = iv;
