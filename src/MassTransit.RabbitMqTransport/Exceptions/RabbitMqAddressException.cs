@@ -15,8 +15,9 @@ namespace MassTransit.RabbitMqTransport
     using System;
     using System.Runtime.Serialization;
 
-
+#if !NETCORE
     [Serializable]
+#endif
     public class RabbitMqAddressException :
         ConfigurationException
     {
@@ -38,10 +39,11 @@ namespace MassTransit.RabbitMqTransport
         {
             HelpLink = DefaultHelpLink;
         }
-
+#if !NETCORE
         protected RabbitMqAddressException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

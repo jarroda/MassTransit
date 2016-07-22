@@ -346,7 +346,7 @@
           "lib/net45/_._": {}
         }
       },
-      "MassTransit/1.0.0": {
+      "MassTransit/1.0.0-core-1": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.2",
         "dependencies": {
@@ -960,7 +960,7 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "MassTransit/1.0.0": {
+    "MassTransit/1.0.0-core-1": {
       "type": "project",
       "path": "../MassTransit/project.json"
     },

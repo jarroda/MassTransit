@@ -204,7 +204,8 @@ namespace MassTransit.RabbitMqTransport
 
             if (name == "*")
             {
-                string uri = address.GetLeftPart(UriPartial.Path);
+                var nonPathParth = UriComponents.Scheme | UriComponents.UserInfo | UriComponents.Host | UriComponents.Port;
+                string uri = address.GetComponents(nonPathParth | UriComponents.Path, UriFormat.UriEscaped);
                 if (uri.EndsWith("*"))
                 {
                     name = NewId.Next().ToString("NS");

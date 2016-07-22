@@ -18,7 +18,9 @@ namespace MassTransit.RabbitMqTransport
     /// <summary>
     /// Thrown when a message is nack'd by the broker
     /// </summary>
+#if !NETCORE    
     [Serializable]
+#endif
     public class PublishNackException :
         TransportException
     {
@@ -30,10 +32,11 @@ namespace MassTransit.RabbitMqTransport
             : base(uri, message)
         {
         }
-
+#if !NETCORE
         protected PublishNackException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }

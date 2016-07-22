@@ -15,6 +15,7 @@ namespace MassTransit.RabbitMqTransport.Topology
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using Newtonsoft.Json.Linq;
     using Transports;
 
@@ -72,8 +73,9 @@ namespace MassTransit.RabbitMqTransport.Topology
 
         public static bool IsTemporaryMessageType(this Type messageType)
         {
-            return (!messageType.IsPublic && messageType.IsClass)
-                || (messageType.IsGenericType && messageType.GetGenericArguments().Any(IsTemporaryMessageType));
+            var messageTypeInfo = messageType.GetTypeInfo();
+            return (!messageTypeInfo.IsPublic && messageTypeInfo.IsClass)
+                || (messageTypeInfo.IsGenericType && messageType.GetGenericArguments().Any(IsTemporaryMessageType));
         }
 
 

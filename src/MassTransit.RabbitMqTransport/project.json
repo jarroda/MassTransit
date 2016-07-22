@@ -1,0 +1,17 @@
+﻿{
+  "dependencies": {
+    "MassTransit": { "target": "project" },
+    "RabbitMQ.Client": "4.0.0-ci-201607150733"
+  },
+  "frameworks": {
+    "net452": { },
+    "netstandard1.5": {
+      "buildOptions": {
+        "define": [ "NETCORE" ]
+      }
+    }
+  },
+  "buildOptions": {
+    "debugType": "portable"
+  }
+}

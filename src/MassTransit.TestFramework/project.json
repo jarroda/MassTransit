@@ -22,7 +22,6 @@
     }
   },
   "buildOptions": {
-    "allowUnsafe": true,
     "debugType": "portable"
   }
 }

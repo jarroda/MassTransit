@@ -18,7 +18,9 @@ namespace MassTransit.RabbitMqTransport
     /// <summary>
     /// Published when a RabbitMQ channel is closed and the message was not confirmed by the broker.
     /// </summary>
+#if !NETCORE
     [Serializable]
+#endif
     public class MessageNotConfirmedException :
         TransportException
     {
@@ -35,10 +37,11 @@ namespace MassTransit.RabbitMqTransport
             : base(uri, message, innerException)
         {
         }
-
+#if !NETCORE
         protected MessageNotConfirmedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }
