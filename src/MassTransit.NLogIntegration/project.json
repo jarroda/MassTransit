@@ -1,0 +1,14 @@
+﻿{
+  "dependencies": {
+    "MassTransit": { "target": "project" },
+    "NLog": "4.4.0-betaV15"
+  },
+  "frameworks": {
+    "net452": { },
+    "netstandard1.5": {
+    }
+  },
+  "buildOptions": {
+    "debugType": "portable"
+  }
+}
