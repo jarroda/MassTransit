@@ -1,0 +1,15 @@
+﻿{
+  "dependencies": {
+    "MassTransit": { "target": "project" },
+    "StructureMap.Dnx": "1.0.0"
+  },
+  "frameworks": {
+    "net452": { },
+    "netstandard1.5": {
+      "imports": [ "dnxcore50" ]
+    }
+  },
+  "buildOptions": {
+    "debugType": "portable"
+  }
+}
