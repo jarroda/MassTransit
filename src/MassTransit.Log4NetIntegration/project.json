@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "MassTransit": { "target": "project" },
+    "log4net": "2.0.5"
+  },
+  "frameworks": {
+    "net452": { }
+  },
+  "buildOptions": {
+    "debugType": "portable"
+  }
+}

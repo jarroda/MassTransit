@@ -242,7 +242,13 @@
           "System.Transactions",
           "System.Xml",
           "System.Xml.Linq"
-        ]
+        ],
+        "compile": {
+          "net452/MassTransit.dll": {}
+        },
+        "runtime": {
+          "net452/MassTransit.dll": {}
+        }
       }
     },
     ".NETStandard,Version=v1.5": {
@@ -1576,6 +1582,12 @@
           "System.Threading.Thread": "4.0.0",
           "System.Threading.ThreadPool": "4.0.10",
           "System.Threading.Timer": "4.0.1"
+        },
+        "compile": {
+          "netstandard1.5/MassTransit.dll": {}
+        },
+        "runtime": {
+          "netstandard1.5/MassTransit.dll": {}
         }
       }
     }
@@ -5145,7 +5157,8 @@
     },
     "MassTransit/1.0.0-core-1": {
       "type": "project",
-      "path": "../MassTransit/project.json"
+      "path": "../MassTransit/project.json",
+      "msbuildProject": "../MassTransit/MassTransit.xproj"
     }
   },
   "projectFileDependencyGroups": {
