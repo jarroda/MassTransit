@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0-core-1",
+  "dependencies": {
+    "MassTransit": { "target": "project" },
+    "Quartz": "3.0.0-alpha2"
+  },
+  "frameworks": {
+    "net452": {
+      "frameworkAssemblies": {
+      },
+      "buildOptions": {
+        "compile": {
+          "excludeFiles": [
+          ]
+        }
+      }
+    },
+    "netstandard1.5": {
+      "dependencies": {
+      },
+      "buildOptions": {
+        "define": [ "NETCORE" ],
+        "compile": {
+          "exclude": [
+          ]
+        }
+      }
+    }
+  },
+  "buildOptions": {
+    "allowUnsafe": true,
+    "debugType": "portable"
+  }
+}

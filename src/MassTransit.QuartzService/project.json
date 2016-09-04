@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-core-1",
+  "dependencies": {
+    "MassTransit": { "target": "project" },
+    "MassTransit.Log4NetIntegration": { "target": "project" },
+    "MassTransit.QuartzIntegration": { "target": "project" },
+    "MassTransit.RabbitMqTransport": { "target": "project" },
+    "Quartz": "3.0.0-alpha2",
+    "Topshelf": "4.0.1",
+    "Topshelf.Log4Net": "4.0.1"
+  },
+  "frameworks": {
+    "net452": {
+      "frameworkAssemblies": {
+      },
+      "buildOptions": {
+        "compile": {
+          "excludeFiles": [
+          ]
+        }
+      }
+    }
+  },
+  "buildOptions": {
+    "allowUnsafe": true,
+    "debugType": "portable",
+    "emitEntryPoint": true
+  }
+}
