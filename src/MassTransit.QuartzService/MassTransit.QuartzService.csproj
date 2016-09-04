@@ -147,7 +147,7 @@
     <Content Include="MassTransitScheduling.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
+    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

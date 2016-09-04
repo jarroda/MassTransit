@@ -1,15 +1,16 @@
 ﻿// Copyright 2007-2015 Chris Patterson, Dru Sellers, Travis Smith, et. al.
-//  
+//
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-// this file except in compliance with the License. You may obtain a copy of the 
-// License at 
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0 
-// 
+// this file except in compliance with the License. You may obtain a copy of the
+// License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed
-// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
-// CONDITIONS OF ANY KIND, either express or implied. See the License for the 
+// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+// CONDITIONS OF ANY KIND, either express or implied. See the License for the
 // specific language governing permissions and limitations under the License.
+
 namespace MassTransit.QuartzService
 {
     using System;
@@ -21,7 +22,7 @@ namespace MassTransit.QuartzService
     using RabbitMqTransport;
     using Scheduling;
     using Topshelf;
-
+    using Util;
 
     public class ScheduleMessageService :
         ServiceControl
@@ -74,11 +75,11 @@ namespace MassTransit.QuartzService
 
                 _scheduler.JobFactory = new MassTransitJobFactory(_bus);
 
-                _scheduler.Start();
+                TaskUtil.Await(() => _scheduler.Start());
             }
             catch (Exception)
             {
-                _scheduler.Shutdown();
+                TaskUtil.Await(() => _scheduler.Shutdown());
                 throw;
             }
 
@@ -87,11 +88,11 @@ namespace MassTransit.QuartzService
 
         public bool Stop(HostControl hostControl)
         {
-            _scheduler.Standby();
+            TaskUtil.Await(() => _scheduler.Standby());
 
             _busHandle?.Stop();
 
-            _scheduler.Shutdown();
+            TaskUtil.Await(() => _scheduler.Shutdown());
 
             return true;
         }
@@ -100,7 +101,7 @@ namespace MassTransit.QuartzService
         {
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
 
-            IScheduler scheduler = schedulerFactory.GetScheduler();
+            IScheduler scheduler = TaskUtil.Await(() => schedulerFactory.GetScheduler());
 
             return scheduler;
         }

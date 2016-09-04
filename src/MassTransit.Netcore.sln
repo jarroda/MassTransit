@@ -36,6 +36,12 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MassTransit.StructureMapInt
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MassTransit.Log4NetIntegration", "MassTransit.Log4NetIntegration\MassTransit.Log4NetIntegration.xproj", "{4AA6ECF5-C91A-4E18-9CC7-8AA448F121CB}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MassTransit.QuartzIntegration", "MassTransit.QuartzIntegration\MassTransit.QuartzIntegration.xproj", "{BE86DC5F-5F5E-43D9-B6F0-C115D2D3D688}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MassTransit.QuartzIntegration.Tests", "MassTransit.QuartzIntegration.Tests\MassTransit.QuartzIntegration.Tests.xproj", "{E27DA7F3-7C0C-480B-A2E2-4608B2106F6A}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MassTransit.QuartzService", "MassTransit.QuartzService\MassTransit.QuartzService.xproj", "{F8EA13FC-426E-4E8E-972D-2B3416AF2858}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +84,18 @@ Global
 		{4AA6ECF5-C91A-4E18-9CC7-8AA448F121CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AA6ECF5-C91A-4E18-9CC7-8AA448F121CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AA6ECF5-C91A-4E18-9CC7-8AA448F121CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE86DC5F-5F5E-43D9-B6F0-C115D2D3D688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE86DC5F-5F5E-43D9-B6F0-C115D2D3D688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE86DC5F-5F5E-43D9-B6F0-C115D2D3D688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE86DC5F-5F5E-43D9-B6F0-C115D2D3D688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27DA7F3-7C0C-480B-A2E2-4608B2106F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27DA7F3-7C0C-480B-A2E2-4608B2106F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27DA7F3-7C0C-480B-A2E2-4608B2106F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27DA7F3-7C0C-480B-A2E2-4608B2106F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EA13FC-426E-4E8E-972D-2B3416AF2858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EA13FC-426E-4E8E-972D-2B3416AF2858}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EA13FC-426E-4E8E-972D-2B3416AF2858}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EA13FC-426E-4E8E-972D-2B3416AF2858}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +107,9 @@ Global
 		{7B7ADE7D-7880-48F3-B355-301B1EB144CD} = {6A938565-BEE9-434C-9A1A-CD2905907554}
 		{1854F836-AEBA-4A99-A381-CAC440047717} = {6C61507E-FF16-45C8-8FE4-350069D9B4C1}
 		{4AA6ECF5-C91A-4E18-9CC7-8AA448F121CB} = {6A938565-BEE9-434C-9A1A-CD2905907554}
+		{BE86DC5F-5F5E-43D9-B6F0-C115D2D3D688} = {FDC1A760-D4E5-44F4-B0D9-C19F2E14253A}
+		{E27DA7F3-7C0C-480B-A2E2-4608B2106F6A} = {FDC1A760-D4E5-44F4-B0D9-C19F2E14253A}
+		{F8EA13FC-426E-4E8E-972D-2B3416AF2858} = {FDC1A760-D4E5-44F4-B0D9-C19F2E14253A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
