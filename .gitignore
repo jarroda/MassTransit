@@ -46,3 +46,4 @@ doc/build/*
 /src/MassTransit.SimpleInjectorIntegration/MassTransit.SimpleInjectorIntegration.csproj.nuspec
 project.lock.json
 /tools/
+/artifacts/
